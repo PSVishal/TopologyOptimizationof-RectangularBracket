@@ -1,0 +1,4223 @@
+
+ ANSYS Mechanical Enterprise                       
+
+
+ *------------------------------------------------------------------*
+ |                                                                  |
+ |   W E L C O M E   T O   T H E   A N S Y S (R)  P R O G R A M     |
+ |                                                                  |
+ *------------------------------------------------------------------*
+
+
+
+
+ ***************************************************************
+ *            ANSYS 2020 R1          LEGAL NOTICES             *
+ ***************************************************************
+ *                                                             *
+ * Copyright 1971-2020 ANSYS, Inc.  All rights reserved.       *
+ * Unauthorized use, distribution or duplication is            *
+ * prohibited.                                                 *
+ *                                                             *
+ * Ansys is a registered trademark of ANSYS, Inc. or its       *
+ * subsidiaries in the United States or other countries.       *
+ * See the ANSYS, Inc. online documentation or the ANSYS, Inc. *
+ * documentation CD or online help for the complete Legal      *
+ * Notice.                                                     *
+ *                                                             *
+ ***************************************************************
+ *                                                             *
+ * THIS ANSYS SOFTWARE PRODUCT AND PROGRAM DOCUMENTATION       *
+ * INCLUDE TRADE SECRETS AND CONFIDENTIAL AND PROPRIETARY      *
+ * PRODUCTS OF ANSYS, INC., ITS SUBSIDIARIES, OR LICENSORS.    *
+ * The software products and documentation are furnished by    *
+ * ANSYS, Inc. or its subsidiaries under a software license    *
+ * agreement that contains provisions concerning               *
+ * non-disclosure, copying, length and nature of use,          *
+ * compliance with exporting laws, warranties, disclaimers,    *
+ * limitations of liability, and remedies, and other           *
+ * provisions.  The software products and documentation may be *
+ * used, disclosed, transferred, or copied only in accordance  *
+ * with the terms and conditions of that software license      *
+ * agreement.                                                  *
+ *                                                             *
+ * ANSYS, Inc. is a UL registered                              *
+ * ISO 9001:2015 company.                                      *
+ *                                                             *
+ ***************************************************************
+ *                                                             *
+ * This product is subject to U.S. laws governing export and   *
+ * re-export.                                                  *
+ *                                                             *
+ * For U.S. Government users, except as specifically granted   *
+ * by the ANSYS, Inc. software license agreement, the use,     *
+ * duplication, or disclosure by the United States Government  *
+ * is subject to restrictions stated in the ANSYS, Inc.        *
+ * software license agreement and FAR 12.212 (for non-DOD      *
+ * licenses).                                                  *
+ *                                                             *
+ ***************************************************************
+
+ 2020 R1 
+     
+ Point Releases and Patches installed:   
+     
+ ANSYS, Inc. Products 2020 R1
+ SpaceClaim 2020 R1  
+ AIM 2020 R1 
+ Live (includes SpaceClaim) 2020 R1  
+ Autodyn 2020 R1 
+ LS-DYNA 2020 R1 
+ CFD-Post only 2020 R1   
+ CFX (includes CFD-Post) 2020 R1 
+ Chemkin 2020 R1 
+ EnSight 2020 R1 
+ FENSAP-ICE 2020 R1  
+ Fluent (includes CFD-Post) 2020 R1  
+ Forte 2020 R1   
+ Polyflow (includes CFD-Post) 2020 R1
+ TurboGrid 2020 R1   
+ ICEM CFD 2020 R1
+ Aqwa 2020 R1
+ Customization Files for User Programmable Features 2020 R1  
+ Mechanical Products 2020 R1 
+ Additive 2020 R1
+ ANSYS Sherlock 2020 R1  
+ Icepak (includes CFD-Post) 2020 R1  
+ Remote Solve Manager Standalone Services 2020 R1
+ Viewer 2020 R1  
+ ACIS Geometry Interface 2020 R1 
+ AutoCAD Geometry Interface 2020 R1  
+ Catia, Version 4 Geometry Interface 2020 R1 
+ Catia, Version 5 Geometry Interface 2020 R1 
+ Catia, Version 6 Geometry Interface 2020 R1 
+ Creo Elements/Direct Modeling Geometry Interface 2020 R1
+ Creo Parametric Geometry Interface 2020 R1  
+ Inventor Geometry Interface 2020 R1 
+ JTOpen Geometry Interface 2020 R1   
+ NX Geometry Interface 2020 R1   
+ Parasolid Geometry Interface  2020 R1   
+ Solid Edge Geometry Interface 2020 R1   
+ SOLIDWORKS Geometry Interface 2020 R1   
+ ANSYS, Inc. License Manager 2020 R1 
+
+
+          *****  ANSYS COMMAND LINE ARGUMENTS  *****
+  INITIAL JOBNAME              = file                                                                                                                                                                                                                                                    
+  BATCH MODE REQUESTED (-b)    = LIST
+  INPUT FILE COPY MODE (-c)    = COPY
+  DISTRIBUTED MEMORY PARALLEL REQUESTED
+       2 PARALLEL PROCESSES REQUESTED WITH SINGLE THREAD PER PROCESS
+    TOTAL OF     2 CORES REQUESTED
+  INPUT FILE NAME              = C:\Users\VISHAL\AppData\Local\Temp\WB_LAPTOP-VISHAL_VISHAL_15684_2\_ProjectScratch\Scr11C6\ds.dat
+  OUTPUT FILE NAME             = C:\Users\VISHAL\AppData\Local\Temp\WB_LAPTOP-VISHAL_VISHAL_15684_2\_ProjectScratch\Scr11C6\solve.out
+
+ RELEASE= 2020 R1              BUILD= 20.1      UP20191203   VERSION=WINDOWS x64 
+ CURRENT JOBNAME=file0  20:24:27  JUN 08, 2021 CP=      0.203
+
+     1  /batch  
+     2  /config,noeldb,1     ! force off writing results to database
+     3  ! ANSYS input file written by Workbench version 2020 R1 
+     4      
+     5  /SYS,"C:\Program Files\ANSYS Inc\v201\\aisol\bin\winx64\Opti.exe" 58226 NEW 
+     6      
+     7  /CLEAR,NOSTART  
+     8  /FILNAME,file_Static23  
+     9  resume,,db  
+    10  esel,u,ename,,153,156   
+    11  esel,r,sfe,pres,-1e100,1e100
+    12  *get,_numsfeelem,elem,0,count   
+    13  *if,_numsfeelem,ne,0,then   
+    14  allsel  
+    15  /solu   
+    16  bfedele,all, TEMP ! Deletes temperature based body load 
+    17  bfdele,all, TEMP ! Deletes temperature based body load  
+    18  acel,0.0,0.0,0.0  ! Deletes linear acceleration 
+    19  cgom,0.0,0.0,0.0  ! Deletes rotational velocity 
+    20  dcgomg,0.0,0.0,0.0  ! Deletes rotational acceleration   
+    21  rescontrol,,none				! No multiframe restarts file   
+    22  /com,******************* SOLVE FOR LS 1 ****************
+    23  outres,erase
+    24  outres,all,none 
+    25  outres,nsol,last
+    26  outres,eangl,last   
+    27  outres,etmp,last
+    28  outres,veng,last
+    29  outres,nload,last  ! Output nodal forces at all time points for Topology Optimization future intent 
+    30  ! *********** WB SOLVE COMMAND ***********  
+    31  ! check interactive state   
+    32  *get,ANSINTER_,active,,int  
+    33  *if,ANSINTER_,ne,0,then 
+    34  /eof
+    35  *endif  
+    36  nsubst,1,1,1
+    37  ematwrite,yes   
+    38  psolve,elform,topo  
+    39  fini
+    40  /SYS,"C:\Program Files\ANSYS Inc\v201\\aisol\bin\winx64\Opti.exe" 58226 PRES1   
+    41  /solu   
+    42  /com,****************************************************   
+    43  /com,*************** FINISHED SOLVE FOR LS 1 *************  
+    44  *get,_wallasol,active,,time,wall
+    45      
+    46  *else   
+    47  /SYS,"C:\Program Files\ANSYS Inc\v201\\aisol\bin\winx64\Opti.exe" 58226 PRES1   
+    48  *endif  
+    49      
+    50  *DIM,notconverged_array,,1  
+    51  *vread,notconverged_array(1),notconverged,dat   
+    52  (F8.0)  
+    53  *SET,notconverged,notconverged_array(1) 
+    54  *if,notconverged,ne,1,then  
+    55  /eof
+    56  *endif  
+    57  *dowhile,notconverged   
+    58     /CLEAR,NOSTART   
+    59     /FILNAME,file_Static23   
+    60     resume,,db   
+    61     /config,resuprec,0              ! We read the element nodal forces (ENF) from the rst file   
+    62                                     ! and need these values in double precision  
+    63     /solu
+    64     rescontrol,,none				! No multiframe restarts file
+    65     /com,******************* SOLVE FOR LS 1 **************** 
+    66     outres,erase 
+    67     outres,all,none  
+    68     outres,nsol,last 
+    69     outres,eangl,last
+    70     outres,etmp,last 
+    71     outres,veng,last 
+    72     outres,nload,last  ! Output nodal forces at all time points for Topology Optimization future intent  
+    73     ! *********** WB SOLVE COMMAND ***********   
+    74     ! check interactive state
+    75     *get,ANSINTER_,active,,int   
+    76     *if,ANSINTER_,ne,0,then  
+    77     /eof 
+    78     *endif   
+    79     outres, rsol,last
+    80     ncnv,,1e+12  
+    81     TOTYPE,EXTERNAL                 ! Activates modification of element stiffness matrices   
+    82     solve
+    83     /com,****************************************************
+    84     /com,*************** FINISHED SOLVE FOR LS 1 *************   
+    85     *get,_wallasol,active,,time,wall 
+    86      
+    87     finish   
+    88      
+    89     /SYS,"C:\Program Files\ANSYS Inc\v201\\aisol\bin\winx64\Opti.exe" 58226 TOPO1
+    90      
+    91     *DIM,notconverged_array,,1   
+    92     *vread,notconverged_array(1),notconverged,dat
+    93     (F8.0)   
+    94     *SET,notconverged,notconverged_array(1)  
+    95  *ENDDO  
+    96  /exit,nosave
+
+ RUN SETUP PROCEDURE FROM FILE= C:\Program Files\ANSYS Inc\v201\ANSYS\apdl\start.ans
+
+ /INPUT FILE= C:\Program Files\ANSYS Inc\v201\ANSYS\apdl\start.ans  LINE=       0
+
+
+
+ *** NOTE ***                            CP =       0.266   TIME= 20:24:27
+ The /CONFIG,NOELDB command is not valid in a Distributed ANSYS          
+ solution.  Command is ignored.                                          
+
+ SYSTEM= 
+ "C:\Program Files\ANSYS Inc\v201\\aisol\bin\winx64\Opti.exe" 58226 NEW
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'NEW'
+ Received 000000E3700FDBD0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+ *** NOTE ***                            CP =       0.297   TIME= 20:24:27
+ The defined jobname (file_Static23) contains a numeric value (0->9) for 
+ the last character.  Therefore, when creating local solution files      
+ Distributed ANSYS will append an underscore to the jobname prior to     
+ appending the MPI rank.                                                 
+
+ RESUME ANSYS DATA FROM FILE NAME=file_Static23.db                                                                                                                                                                                                                                                    
+
+ *** ANSYS GLOBAL STATUS *** 
+
+ TITLE = unsaved_project--Static Structural (A5)                               
+ ANALYSIS TYPE =  STATIC (STEADY-STATE)
+ NUMBER OF ELEMENT TYPES =      2
+      2322 ELEMENTS CURRENTLY SELECTED.  MAX ELEMENT NUMBER =        4306
+     12238 NODES CURRENTLY SELECTED.     MAX NODE NUMBER =          12238
+         2 COMPONENTS CURRENTLY DEFINED
+ MAXIMUM LINEAR PROPERTY NUMBER        =       1
+ ACTIVE COORDINATE SYSTEM              =       0  (CARTESIAN)  
+ NUMBER OF SPECIFIED CONSTRAINTS       =     909
+ NUMBER OF SPECIFIED SURFACE LOADS     =      30
+
+ INITIAL JOBNAME = file
+ CURRENT JOBNAME = file_Static23
+
+ UNSELECT     FOR ITEM=ENAM COMPONENT=    
+  IN RANGE       153 TO        156 STEP          1
+
+       2292  ELEMENTS (OF       2322  DEFINED) SELECTED BY  ESEL  COMMAND.
+
+ RESELECT     FOR ITEM=SFE  COMPONENT=PRES  BETWEEN-0.10000+101 AND  0.10000+101
+   KABS=  0.  TOLERANCE=  0.00000    
+
+          0  ELEMENTS (OF       2322  DEFINED) SELECTED BY  ESEL  COMMAND.
+
+ *GET  _NUMSFEELEM  FROM  ELEM  ITEM=COUN           VALUE=  0.00000000    
+
+ *IF  _numsfeelem                       ( =   0.00000     )  NE  
+      0                                 ( =   0.00000     )  THEN    
+
+ *ELSE
+
+ SYSTEM= 
+ "C:\Program Files\ANSYS Inc\v201\\aisol\bin\winx64\Opti.exe" 58226 PRES1
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'PRES1'
+ Received 0000006C5BF0D770
+
+ *ENDIF
+
+ SET PARAMETER DIMENSIONS ON  NOTCONVERGED_ARRAY
+  TYPE=ARRA  DIMENSIONS=        1        1        1
+
+ VECTOR READ OPERATION  *VREAD  
+  notconve READ FROM FILE notconverged.dat
+ VECTOR LENGTH=      1
+ LOOP DIRECTIONS=IJK   COUNTS=       1       1       1
+ FORMAT=(F8.0)                                                                
+
+ PARAMETER NOTCONVERGED =     1.000000000    
+
+ *IF  notconverged                      ( =   1.00000     )  NE  
+      1                                 ( =   1.00000     )  THEN    
+
+ *ENDIF
+
+ *DOWHILE LOOP ON PARAMETER= NOTCONVERGED
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+ *** NOTE ***                            CP =       0.469   TIME= 20:24:27
+ The defined jobname (file_Static23) contains a numeric value (0->9) for 
+ the last character.  Therefore, when creating local solution files      
+ Distributed ANSYS will append an underscore to the jobname prior to     
+ appending the MPI rank.                                                 
+
+ RESUME ANSYS DATA FROM FILE NAME=file_Static23.db                                                                                                                                                                                                                                                    
+
+ *** ANSYS GLOBAL STATUS *** 
+
+ TITLE = unsaved_project--Static Structural (A5)                               
+ ANALYSIS TYPE =  STATIC (STEADY-STATE)
+ NUMBER OF ELEMENT TYPES =      2
+      2322 ELEMENTS CURRENTLY SELECTED.  MAX ELEMENT NUMBER =        4306
+     12238 NODES CURRENTLY SELECTED.     MAX NODE NUMBER =          12238
+         2 COMPONENTS CURRENTLY DEFINED
+ MAXIMUM LINEAR PROPERTY NUMBER        =       1
+ ACTIVE COORDINATE SYSTEM              =       0  (CARTESIAN)  
+ NUMBER OF SPECIFIED CONSTRAINTS       =     909
+ NUMBER OF SPECIFIED SURFACE LOADS     =      30
+
+ INITIAL JOBNAME = file
+ CURRENT JOBNAME = file_Static23
+
+
+ USE DOUBLE PRECISION RESULTS FILE FORMAT
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+
+ DO NOT SAVE ANY RESTART FILES AT ALL
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ WRITE ALL  ITEMS TO THE DATABASE WITH A FREQUENCY OF NONE
+   FOR ALL APPLICABLE ENTITIES
+
+ WRITE NSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF LAST
+   FOR ALL APPLICABLE ENTITIES
+
+ WRITE EANG ITEMS TO THE DATABASE WITH A FREQUENCY OF LAST
+   FOR ALL APPLICABLE ENTITIES
+
+ WRITE ETMP ITEMS TO THE DATABASE WITH A FREQUENCY OF LAST
+   FOR ALL APPLICABLE ENTITIES
+
+ WRITE VENG ITEMS TO THE DATABASE WITH A FREQUENCY OF LAST
+   FOR ALL APPLICABLE ENTITIES
+
+ WRITE NLOA ITEMS TO THE DATABASE WITH A FREQUENCY OF LAST
+   FOR ALL APPLICABLE ENTITIES
+
+ *GET  ANSINTER_  FROM  ACTI  ITEM=INT        VALUE=  0.00000000    
+
+ *IF  ANSINTER_                         ( =   0.00000     )  NE  
+      0                                 ( =   0.00000     )  THEN    
+
+ *ENDIF
+
+ WRITE RSOL ITEMS TO THE DATABASE WITH A FREQUENCY OF LAST
+   FOR ALL APPLICABLE ENTITIES
+
+ KEY TO TERMINATE RUN IF NO CONVERGENCE=  1
+ DEGREE OF FREEDOM (DISPLACEMENT) LIMIT= 0.10000E+13
+ CUMULATIVE ITERATION LIMIT=     0
+ ELAPSED TIME LIMIT (SEC)=  0.0000       (  0 HOURS  0 MIN)
+ CPU TIME LIMIT (SEC)=  0.0000       (  0 HOURS  0 MIN)
+
+ SET TOPOLOGICAL OPTIMIZATION METHOD TO EXTERNALLY SUPPLIED METHOD
+
+ *** NOTE ***                            CP =       0.500   TIME= 20:24:27
+ The automatic domain decomposition logic has selected the MESH domain   
+ decomposition method with 2 processes per solution.                     
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       0.500   TIME= 20:24:27
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** NOTE ***                            CP =       0.531   TIME= 20:24:27
+ The model data was checked and warning messages were found.             
+  Please review output or errors file (                                  
+ C:\Users\VISHAL\AppData\Local\Temp\WB_LAPTOP-VISHAL_VISHAL_15684_2\_Pro 
+ ojectScratch\Scr11C6\file0.err ) for these warning messages.            
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:27  JUN 08, 2021 CP=      0.531
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+                       S O L U T I O N   O P T I O N S
+
+   PROBLEM DIMENSIONALITY. . . . . . . . . . . . .3-D                  
+   DEGREES OF FREEDOM. . . . . . UX   UY   UZ  
+   ANALYSIS TYPE . . . . . . . . . . . . . . . . .STATIC (STEADY-STATE)
+   OFFSET TEMPERATURE FROM ABSOLUTE ZERO . . . . .  273.15    
+   EQUATION SOLVER OPTION. . . . . . . . . . . . .PCG                
+      TOLERANCE. . . . . . . . . . . . . . . . . . 1.00000E-08
+   GLOBALLY ASSEMBLED MATRIX . . . . . . . . . . .SYMMETRIC  
+
+ *** WARNING ***                         CP =       0.531   TIME= 20:24:27
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+ *** NOTE ***                            CP =       0.531   TIME= 20:24:27
+ The step data was checked and warning messages were found.              
+  Please review output or errors file (                                  
+ C:\Users\VISHAL\AppData\Local\Temp\WB_LAPTOP-VISHAL_VISHAL_15684_2\_Pro 
+ ojectScratch\Scr11C6\file0.err ) for these warning messages.            
+
+ *** NOTE ***                            CP =       0.531   TIME= 20:24:27
+ The conditions for direct assembly have been met.  No .emat or .erot    
+ files will be produced.                                                 
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+                      L O A D   S T E P   O P T I O N S
+
+   LOAD STEP NUMBER. . . . . . . . . . . . . . . .     1
+   TIME AT END OF THE LOAD STEP. . . . . . . . . .  1.0000    
+   NUMBER OF SUBSTEPS. . . . . . . . . . . . . . .     1
+   STEP CHANGE BOUNDARY CONDITIONS . . . . . . . .    NO
+   PRINT OUTPUT CONTROLS . . . . . . . . . . . . .NO PRINTOUT
+   DATABASE OUTPUT CONTROLS
+      ITEM     FREQUENCY   COMPONENT
+       ALL       NONE               
+      NSOL       LAST               
+      EANG       LAST               
+      ETMP       LAST               
+      VENG       LAST               
+      NLOA       LAST               
+      RSOL       LAST               
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       0.625   TIME= 20:24:27
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.406   0.000177
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 0.9375.                  
+ curEqn=    816  totEqn=    816 Job CP sec=      1.031
+      Factor Done= 100% Factor Wall sec=      0.005 rate=    1667.4 Mflops
+ Iteration=     5 Ratio=  0.291075     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    90 Ratio=  7.253313E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   160 Ratio=  2.831725E-06 Limit=  1.000000E-08 Wall=     0.4
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         229
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.92316E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.69
+   TOTAL WALL TIME(sec)=        0.69
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.125   0.000055
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ *GET  _WALLASOL  FROM  ACTI  ITEM=TIME WALL  VALUE=  20.4077778    
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         1.750
+
+
+
+ SYSTEM= 
+ "C:\Program Files\ANSYS Inc\v201\\aisol\bin\winx64\Opti.exe" 58226 TOPO1
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000E5EBD3DD40
+
+ SET PARAMETER DIMENSIONS ON  NOTCONVERGED_ARRAY
+  TYPE=ARRA  DIMENSIONS=        1        1        1
+
+ VECTOR READ OPERATION  *VREAD  
+  notconve READ FROM FILE notconverged.dat
+ VECTOR LENGTH=      1
+ LOOP DIRECTIONS=IJK   COUNTS=       1       1       1
+ FORMAT=(F8.0)                                                                
+
+ PARAMETER NOTCONVERGED =     1.000000000    
+
+ *ENDDO  INDEX= NOTCONVERGED                    
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       1.828   TIME= 20:24:29
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:29  JUN 08, 2021 CP=      1.859
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =       1.859   TIME= 20:24:29
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       1.953   TIME= 20:24:29
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.453   0.000198
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 2.28125.                 
+ curEqn=    978  totEqn=    978 Job CP sec=      2.359
+      Factor Done= 100% Factor Wall sec=      0.004 rate=    2684.1 Mflops
+ Iteration=     5 Ratio=  0.298901     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    70 Ratio=  9.964624E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   135 Ratio=  2.987271E-06 Limit=  1.000000E-08 Wall=     0.4
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         195
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.83382E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.70
+   TOTAL WALL TIME(sec)=        0.69
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.094   0.000041
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         3.094
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000376477D9E0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       3.172   TIME= 20:24:30
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:30  JUN 08, 2021 CP=      3.203
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =       3.203   TIME= 20:24:30
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       3.297   TIME= 20:24:30
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 3.578125.                
+ curEqn=    912  totEqn=    912 Job CP sec=      3.656
+      Factor Done= 100% Factor Wall sec=      0.005 rate=    2021.2 Mflops
+ Iteration=    10 Ratio=  0.114697     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    90 Ratio=  7.358856E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   165 Ratio=  2.666604E-06 Limit=  1.000000E-08 Wall=     0.4
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         221
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.94995E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.62
+   TOTAL WALL TIME(sec)=        0.63
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         4.344
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 00000022AF6FDBD0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       4.422   TIME= 20:24:31
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:31  JUN 08, 2021 CP=      4.453
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =       4.453   TIME= 20:24:31
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       4.516   TIME= 20:24:31
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 4.828125.                
+ curEqn=   1098  totEqn=   1098 Job CP sec=      4.922
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3377.0 Mflops
+ Iteration=    10 Ratio=  0.113827     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    70 Ratio=  9.743435E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   130 Ratio=  2.477719E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         185
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.85020E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.59
+   TOTAL WALL TIME(sec)=        0.58
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.125   0.000055
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         5.547
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000B8C78FDC40
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       5.609   TIME= 20:24:32
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:32  JUN 08, 2021 CP=      5.641
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =       5.641   TIME= 20:24:32
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       5.703   TIME= 20:24:32
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.391   0.000170
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 6.015625.                
+ curEqn=   1026  totEqn=   1026 Job CP sec=      6.094
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    4203.0 Mflops
+ Iteration=    10 Ratio=  0.116378     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    70 Ratio=  8.499914E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   130 Ratio=  1.826675E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         181
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.93457E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.55
+   TOTAL WALL TIME(sec)=        0.53
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.125   0.000055
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         6.688
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000C05AD1DA60
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       6.766   TIME= 20:24:33
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:33  JUN 08, 2021 CP=      6.797
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =       6.797   TIME= 20:24:33
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       6.859   TIME= 20:24:33
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.391   0.000170
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 7.203125.                
+ curEqn=   1170  totEqn=   1170 Job CP sec=      7.234
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    4135.3 Mflops
+ Iteration=    10 Ratio=  0.118737     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    65 Ratio=  7.685100E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   125 Ratio=  2.883844E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         191
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.96020E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.52
+   TOTAL WALL TIME(sec)=        0.55
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.125   0.000055
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         7.859
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 00000068076FD780
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       7.938   TIME= 20:24:34
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:34  JUN 08, 2021 CP=      7.969
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =       7.969   TIME= 20:24:34
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       8.062   TIME= 20:24:34
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 8.375.                   
+ curEqn=    948  totEqn=    948 Job CP sec=      8.469
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3470.0 Mflops
+ Iteration=    10 Ratio=  0.116330     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    70 Ratio=  6.263891E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   130 Ratio=  1.854750E-06 Limit=  1.000000E-08 Wall=     0.4
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         181
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.86616E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.61
+   TOTAL WALL TIME(sec)=        0.62
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =         9.141
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000E49F2FDDD0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =       9.203   TIME= 20:24:36
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:36  JUN 08, 2021 CP=      9.234
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =       9.234   TIME= 20:24:36
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =       9.328   TIME= 20:24:36
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.391   0.000170
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 9.625.                   
+ curEqn=    984  totEqn=    984 Job CP sec=      9.703
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3649.1 Mflops
+ Iteration=    10 Ratio=  0.122448     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    65 Ratio=  9.651362E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   125 Ratio=  2.732426E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         179
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.86582E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.52
+   TOTAL WALL TIME(sec)=        0.51
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.094   0.000041
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        10.281
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 00000091B38FDC30
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      10.359   TIME= 20:24:37
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:37  JUN 08, 2021 CP=     10.391
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      10.391   TIME= 20:24:37
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      10.453   TIME= 20:24:37
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.438   0.000191
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 10.796875.               
+ curEqn=    984  totEqn=    984 Job CP sec=     10.844
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3283.2 Mflops
+ Iteration=    10 Ratio=  0.122265     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    65 Ratio=  8.733660E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   130 Ratio=  1.894640E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         183
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.83796E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.53
+   TOTAL WALL TIME(sec)=        0.54
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        11.453
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000AA264FDDC0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      11.516   TIME= 20:24:38
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:38  JUN 08, 2021 CP=     11.578
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      11.578   TIME= 20:24:38
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      11.641   TIME= 20:24:38
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 11.953125.               
+ curEqn=    996  totEqn=    996 Job CP sec=     12.031
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3664.4 Mflops
+ Iteration=    10 Ratio=  0.122410     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    65 Ratio=  8.371967E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   130 Ratio=  1.773879E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         181
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.85291E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.50
+   TOTAL WALL TIME(sec)=        0.50
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        12.594
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 00000043C3D7D760
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      12.656   TIME= 20:24:39
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:39  JUN 08, 2021 CP=     12.688
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      12.719   TIME= 20:24:39
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      12.781   TIME= 20:24:39
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.406   0.000177
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 13.09375.                
+ curEqn=    984  totEqn=    984 Job CP sec=     13.125
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3325.8 Mflops
+ Iteration=    10 Ratio=  0.120523     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    55 Ratio=  9.946471E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   115 Ratio=  2.274899E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         169
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.88539E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.45
+   TOTAL WALL TIME(sec)=        0.48
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        13.672
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 0000001849B9D900
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      13.766   TIME= 20:24:40
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:40  JUN 08, 2021 CP=     13.797
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      13.797   TIME= 20:24:40
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      13.859   TIME= 20:24:40
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.375   0.000164
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 14.171875.               
+ curEqn=    978  totEqn=    978 Job CP sec=     14.234
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3304.7 Mflops
+ Iteration=    10 Ratio=  0.119725     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    60 Ratio=  6.722889E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   115 Ratio=  2.295306E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         167
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.89953E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.48
+   TOTAL WALL TIME(sec)=        0.48
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        14.781
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000773D1ED870
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      14.875   TIME= 20:24:41
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:41  JUN 08, 2021 CP=     14.906
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      14.906   TIME= 20:24:41
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      14.969   TIME= 20:24:41
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.406   0.000177
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 15.28125.                
+ curEqn=    948  totEqn=    948 Job CP sec=     15.344
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3287.2 Mflops
+ Iteration=    10 Ratio=  0.118368     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    70 Ratio=  6.228621E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   130 Ratio=  2.158266E-06 Limit=  1.000000E-08 Wall=     0.4
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         181
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.86682E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.59
+   TOTAL WALL TIME(sec)=        0.59
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.016   0.000521
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        16.016
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000314B93D9A0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      16.062   TIME= 20:24:42
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:42  JUN 08, 2021 CP=     16.125
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      16.125   TIME= 20:24:42
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      16.188   TIME= 20:24:42
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 16.5.                    
+ curEqn=   1014  totEqn=   1014 Job CP sec=     16.578
+      Factor Done= 100% Factor Wall sec=      0.002 rate=    3817.4 Mflops
+ Iteration=    10 Ratio=  0.117820     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    60 Ratio=  5.303491E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   110 Ratio=  2.403826E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         163
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.90635E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.48
+   TOTAL WALL TIME(sec)=        0.49
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.125   0.000055
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        17.141
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000387573DD10
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      17.203   TIME= 20:24:43
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:43  JUN 08, 2021 CP=     17.234
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      17.266   TIME= 20:24:43
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      17.328   TIME= 20:24:43
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 17.609375.               
+ curEqn=    984  totEqn=    984 Job CP sec=     17.703
+      Factor Done= 100% Factor Wall sec=      0.002 rate=    3472.2 Mflops
+ Iteration=    10 Ratio=  0.118178     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    60 Ratio=  5.311716E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   110 Ratio=  2.416686E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         165
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.89317E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.48
+   TOTAL WALL TIME(sec)=        0.47
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.141   0.000061
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        18.250
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 0000008F0B9BD8B0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      18.328   TIME= 20:24:44
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:44  JUN 08, 2021 CP=     18.359
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      18.359   TIME= 20:24:44
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      18.422   TIME= 20:24:44
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 18.734375.               
+ curEqn=    954  totEqn=    954 Job CP sec=     18.797
+      Factor Done= 100% Factor Wall sec=      0.002 rate=    3631.4 Mflops
+ Iteration=    10 Ratio=  0.121331     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    65 Ratio=  9.409677E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   130 Ratio=  1.889499E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         187
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.83548E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.55
+   TOTAL WALL TIME(sec)=        0.52
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.156   0.000068
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        19.422
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000267330DD10
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      19.484   TIME= 20:24:45
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:45  JUN 08, 2021 CP=     19.516
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      19.516   TIME= 20:24:45
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      19.578   TIME= 20:24:45
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 19.890625.               
+ curEqn=    984  totEqn=    984 Job CP sec=     19.969
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3746.8 Mflops
+ Iteration=    10 Ratio=  0.121778     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    60 Ratio=  6.086106E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   115 Ratio=  2.470391E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         167
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.83180E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.50
+   TOTAL WALL TIME(sec)=        0.47
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.094   0.000041
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.031   0.000014
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        20.516
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 00000025EE8FDC20
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      20.578   TIME= 20:24:46
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:46  JUN 08, 2021 CP=     20.609
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      20.609   TIME= 20:24:46
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      20.672   TIME= 20:24:46
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.438   0.000191
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 21.015625.               
+ curEqn=    978  totEqn=    978 Job CP sec=     21.078
+      Factor Done= 100% Factor Wall sec=      0.002 rate=    4080.1 Mflops
+ Iteration=    10 Ratio=  0.119623     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    55 Ratio=  9.126109E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   110 Ratio=  2.344139E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         167
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.91829E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.47
+   TOTAL WALL TIME(sec)=        0.47
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.125   0.000055
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.000   0.000000
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        21.609
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 00000086016FDD40
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      21.688   TIME= 20:24:47
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:47  JUN 08, 2021 CP=     21.719
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      21.719   TIME= 20:24:47
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      21.781   TIME= 20:24:47
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 22.09375.                
+ curEqn=    882  totEqn=    882 Job CP sec=     22.156
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    2879.8 Mflops
+ Iteration=    10 Ratio=  0.119221     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    55 Ratio=  9.055885E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   110 Ratio=  2.297001E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         167
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.85783E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.52
+   TOTAL WALL TIME(sec)=        0.50
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.094   0.000041
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        22.734
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 00000008757DDE80
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      22.797   TIME= 20:24:48
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:48  JUN 08, 2021 CP=     22.859
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      22.859   TIME= 20:24:48
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      22.922   TIME= 20:24:48
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.391   0.000170
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 23.234375.               
+ curEqn=   1002  totEqn=   1002 Job CP sec=     23.297
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    2648.6 Mflops
+ Iteration=    10 Ratio=  0.122247     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    60 Ratio=  5.964329E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   120 Ratio=  2.043996E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         169
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.89018E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.50
+   TOTAL WALL TIME(sec)=        0.49
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        23.844
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000051DF5DBE0
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      23.922   TIME= 20:24:49
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:49  JUN 08, 2021 CP=     23.953
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      23.953   TIME= 20:24:49
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      24.016   TIME= 20:24:49
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.438   0.000191
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 24.359375.               
+ curEqn=    924  totEqn=    924 Job CP sec=     24.406
+      Factor Done= 100% Factor Wall sec=      0.002 rate=    3738.6 Mflops
+ Iteration=    10 Ratio=  0.122374     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    60 Ratio=  5.887158E-04 Limit=  1.000000E-08 Wall=     0.1
+ Iteration=   120 Ratio=  2.020457E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         169
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.89559E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.48
+   TOTAL WALL TIME(sec)=        0.48
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.109   0.000048
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.016   0.000007
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        24.969
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 000000F41E8FD750
+
+ CLEAR ANSYS DATABASE AND RESTART
+
+ Topology Optimization: released
+
+
+ ANSYS Mechanical Enterprise                       
+
+ CURRENT JOBNAME REDEFINED AS file_Static23
+
+
+
+ *****  ANSYS SOLUTION ROUTINE  *****
+ ******************* SOLVE FOR LS 1 ****************
+
+ ERASE THE CURRENT DATABASE OUTPUT CONTROL TABLE.
+
+
+ *****  ANSYS SOLVE    COMMAND  *****
+
+ *** WARNING ***                         CP =      25.047   TIME= 20:24:50
+ Element shape checking is currently inactive.  Issue SHPP,ON or         
+ SHPP,WARN to reactivate, if desired.                                    
+
+ *** SELECTION OF ELEMENT TECHNOLOGIES FOR APPLICABLE ELEMENTS ***
+      --- GIVE SUGGESTIONS AND RESET THE KEY OPTIONS ---
+
+ ELEMENT TYPE    1 IS SOLID186. KEYOPT(2)=0 IS SUGGESTED AND HAS BEEN RESET.
+  KEYOPT(1-12)=    0    0    0    0    0    0    0    0    0    0    0    0
+
+
+
+ *** ANSYS - ENGINEERING ANALYSIS SYSTEM  RELEASE 2020 R1          20.1     ***
+ DISTRIBUTED ANSYS Mechanical Enterprise                       
+
+ 20120530  VERSION=WINDOWS x64   20:24:50  JUN 08, 2021 CP=     25.078
+
+ unsaved_project--Static Structural (A5)                                       
+
+
+
+ *** WARNING ***                         CP =      25.078   TIME= 20:24:50
+ Material number 2 (used by element 4277) should normally have at least  
+ one MP or one TB type command associated with it.  Output of energy by  
+ material may not be available.                                          
+
+  
+  
+     D I S T R I B U T E D   D O M A I N   D E C O M P O S E R
+  
+  ...Number of elements: 2322
+  ...Number of nodes:    12238
+  ...Decompose to 2 CPU domains
+  ...Element load balance ratio =     1.013
+
+
+ Topology Optimization: Multipliers prepared
+
+
+ Topology Optimization: Multipliers updated
+
+
+ SOLUTION MONITORING INFO IS WRITTEN TO FILE= file_Static23.mntr                                                                                                                                                                                                                                                  
+
+
+ *** NOTE ***                            CP =      25.141   TIME= 20:24:50
+ The PCG solver has automatically set the level of difficulty for this   
+ model to 1.                                                             
+
+
+                         ***********  PRECISE MASS SUMMARY  ***********
+
+   TOTAL RIGID BODY MASS MATRIX ABOUT ORIGIN
+               Translational mass               |   Coupled translational/rotational mass
+        0.38762E-05    0.0000        0.0000     |     0.0000      -0.38762E-05  -0.39169E-04
+         0.0000       0.38762E-05    0.0000     |    0.38762E-05    0.0000       0.62320E-04
+         0.0000        0.0000       0.38762E-05 |    0.39169E-04  -0.62320E-04    0.0000    
+     ------------------------------------------ | ------------------------------------------
+                                                |         Rotational mass (inertia)
+                                                |    0.57546E-03  -0.50258E-03   0.62320E-04
+                                                |   -0.50258E-03   0.14479E-02   0.39169E-04
+                                                |    0.62320E-04   0.39169E-04   0.20130E-02
+
+   TOTAL MASS = 0.38762E-05
+     The mass principal axes coincide with the global Cartesian axes
+
+   CENTER OF MASS (X,Y,Z)=    16.077        10.105       -1.0000    
+
+   TOTAL INERTIA ABOUT CENTER OF MASS
+        0.17577E-03   0.12716E-03   0.11913E-18
+        0.12716E-03   0.44206E-03   0.23856E-19
+        0.11913E-18   0.23856E-19   0.61524E-03
+
+   PRINCIPAL INERTIAS =   0.12480E-03   0.49303E-03   0.61524E-03
+   ORIENTATION VECTORS OF THE INERTIA PRINCIPAL AXES IN GLOBAL CARTESIAN
+     ( 0.928,-0.372,-0.000) ( 0.372, 0.928,-0.000) ( 0.000, 0.000, 1.000) 
+
+
+  *** MASS SUMMARY BY ELEMENT TYPE ***
+
+  TYPE      MASS
+     1  0.387623E-05
+
+ Range of element maximum matrix coefficients in global coordinates
+ Maximum = 153181.215 at element 209.                                    
+ Minimum = 35488.4483 at element 2285.                                   
+
+   *** ELEMENT MATRIX FORMULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.422   0.000184
+        2        30  SURF154       0.000   0.000000
+ Time at end of element matrix formulation CP = 25.453125.               
+ curEqn=   1014  totEqn=   1014 Job CP sec=     25.531
+      Factor Done= 100% Factor Wall sec=      0.003 rate=    3986.1 Mflops
+ Iteration=     5 Ratio=  0.311048     Limit=  1.000000E-08 Wall=     0.0
+ Iteration=    65 Ratio=  9.862687E-04 Limit=  1.000000E-08 Wall=     0.2
+ Iteration=   130 Ratio=  2.255566E-06 Limit=  1.000000E-08 Wall=     0.3
+
+ DISTRIBUTED PCG SOLVER SOLUTION CONVERGED
+
+ DISTRIBUTED PCG SOLVER SOLUTION STATISTICS
+
+   NUMBER OF DOMAINS   =          64
+   NUMBER OF ITERATIONS=         179
+   NUMBER OF EQUATIONS =       36714
+   LEVEL OF CONVERGENCE=           1
+   CALCULATED NORM     = 0.96502E-08
+   SPECIFIED TOLERANCE = 0.10000E-07
+   TOTAL CPU TIME (sec)=        0.53
+   TOTAL WALL TIME(sec)=        0.50
+   TOTAL MEMORY (GB)   =        0.03
+
+
+   *** ELEMENT RESULT CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.094   0.000041
+        2        30  SURF154       0.000   0.000000
+
+   *** NODAL LOAD CALCULATION TIMES
+     TYPE    NUMBER   ENAME      TOTAL CP  AVE CP
+
+        1      2292  SOLID186      0.031   0.000014
+        2        30  SURF154       0.000   0.000000
+ *** LOAD STEP     1   SUBSTEP     1  COMPLETED.    CUM ITER =      1
+ *** TIME =   1.00000         TIME INC =   1.00000      NEW TRIANG MATRIX
+
+
+ *** ANSYS BINARY FILE STATISTICS
+  BUFFER SIZE USED= 16384
+        1.875 MB WRITTEN ON RESULTS FILE: file_Static23_0.rst
+ ****************************************************
+ *************** FINISHED SOLVE FOR LS 1 *************
+
+ FINISH SOLUTION PROCESSING
+
+
+ ***** ROUTINE COMPLETED *****  CP =        26.109
+
+
+ Socket ready!
+ Connecting SUCCESS!
+
+ Client
+
+ Sending 'TOPO1'
+ Received 0000004E02EFDAB0
+
+ EXIT ANSYS WITHOUT SAVING DATABASE
+
+
+ NUMBER OF WARNING MESSAGES ENCOUNTERED=         44
+ NUMBER OF ERROR   MESSAGES ENCOUNTERED=          0
+
+ Topology Optimization: released
+
+
++--------- D I S T R I B U T E D   A N S Y S   S T A T I S T I C S ------------+
+
+Release: 2020 R1            Build: 20.1       Update: UP20191203   Platform: WINDOWS x64 
+Date Run: 06/08/2021   Time: 20:24     Process ID: 7916
+Operating System: Windows 10  (Build: 19043)
+
+Processor Model: Intel(R) Core(TM) i7-9750H CPU @ 2.60GHz
+
+Compiler: Intel(R) FORTRAN Compiler Version 19.0.0  (Build: 20190206)
+          Intel(R) C/C++ Compiler Version 19.0.0  (Build: 20190206)
+          Intel(R) Math Kernel Library Version 2019.0.3 Product Build 20190125
+
+Number of machines requested            :    1
+Total number of cores available         :   12
+Number of physical cores available      :    6
+Number of processes requested           :    2
+Number of threads per process requested :    1
+Total number of cores requested         :    2 (Distributed Memory Parallel)               
+MPI Type: INTELMPI
+MPI Version: Intel(R) MPI Library 2018 Update 3 for Windows* OS
+
+
+GPU Acceleration: Not Requested
+
+Job Name: file_Static23_0
+Input File: ds.dat
+
+  Core                Machine Name   Working Directory
+ -----------------------------------------------------
+     0               LAPTOP-VISHAL   C:\Users\VISHAL\AppData\Local\Temp\WB_LAPTOP-VISHAL_VISHAL_15684_2\_ProjectScratch\Scr11C6
+     1               LAPTOP-VISHAL   C:\Users\VISHAL\AppData\Local\Temp\WB_LAPTOP-VISHAL_VISHAL_15684_2\_ProjectScratch\Scr11C6
+ 
+Latency time from master to core     1 =    0.687 microseconds
+ 
+Communication speed from master to core     1 =  4871.28 MB/sec
+
+Total CPU time for main thread                    :       21.0 seconds
+Total CPU time summed for all threads             :       26.2 seconds
+
+Elapsed time spent obtaining a license            :        0.7 seconds
+Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+Elapsed time spent solution - preprocessing       :        1.1 seconds
+Elapsed time spent computing solution             :       17.2 seconds
+Elapsed time spent solution - postprocessing      :        0.4 seconds
+Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+ 
+Equation solver used                              :            PCG (symmetric)
+Equation solver computational rate                :        6.0 Gflops
+
+Maximum total memory used                         :      129.0 MB
+Maximum total memory allocated                    :     3136.0 MB
+Total physical memory available                   :          8 GB
+
+Total amount of I/O written to disk               :        0.0 GB
+Total amount of I/O read from disk                :        0.0 GB
+
++------ E N D   D I S T R I B U T E D   A N S Y S   S T A T I S T I C S -------+
+
+
+ *---------------------------------------------------------------------------*
+ |                                                                           |
+ |                       DISTRIBUTED ANSYS RUN COMPLETED                     |
+ |                                                                           |
+ |---------------------------------------------------------------------------|
+ |                                                                           |
+ | Ansys 2020 R1               Build 20.1         UP20191203     WINDOWS x64 |
+ |                                                                           |
+ |---------------------------------------------------------------------------|
+ |                                                                           |
+ | Database Requested(-db)  1024 MB    Scratch Memory Requested      1024 MB |
+ | Maximum Database Used       6 MB    Maximum Scratch Memory Used     65 MB |
+ |                                                                           |
+ |---------------------------------------------------------------------------|
+ |                                                                           |
+ |        CP Time      (sec) =         26.156       Time  =  20:24:51        |
+ |        Elapsed Time (sec) =         26.000       Date  =  06/08/2021      |
+ |                                                                           |
+ *---------------------------------------------------------------------------*

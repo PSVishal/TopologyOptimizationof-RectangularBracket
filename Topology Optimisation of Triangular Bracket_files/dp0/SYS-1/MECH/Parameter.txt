@@ -1,0 +1,30 @@
+$Topology Optimization Input File
+FeederSystem1=Static,Static23,23,C:\Users\VISHAL\AppData\Local\Temp\WB_LAPTOP-VISHAL_VISHAL_15684_2\unsaved_project_files\dp0\SYS\MECH\,1,1.000000
+nonlin_contact = no
+min_density = 0.001
+power_law_stiff = 3
+max_iter = 500
+acc = 0.001
+output_freq = 1
+max_num_inter_files = 500
+solver = scpip
+ansys_version = 201
+units = MPA
+distributed = True
+num_procs = 2
+
+cut_off_scp = 1
+version_scp = 402
+
+$Objective:
+objective1=COMP,Objective,23,all,no,1
+
+$Constraints:
+constraint1 = TOT_MASS,Mass Constraint, 50
+
+$Design Space:
+design_elements = OptimizationRegionElements.dat
+
+$Capability Info:
+license_server = 53031@127.0.0.1
+capability_id = LAPTOP-VISHAL-VISHAL-9632-013807
